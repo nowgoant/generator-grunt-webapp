@@ -1,0 +1,21 @@
+// bower:scss
+// endbower
+@import "base/utility";
+
+@charset "utf-8";
+.bg-white {
+  background-color: #ffffff;
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+}
+
+.mt20 {
+  margin-top: $rem-20;
+}
+
+.pl30 {
+  padding-left: $rem-30;
+}

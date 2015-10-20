@@ -1,0 +1,187 @@
+@charset "utf-8";
+/**
+ * compass start
+*/
+@import "compass";
+@import "compass/css3";
+/**
+ * compass end
+*/
+@import "size";
+@import "color";
+
+$browser-minimum-versions: ("ie":"9");
+//width height
+$defalutHeight: $rem-60;
+//border
+$borderColor: $theme-color-border;
+
+$border-radius-size: 6px;
+
+$headIconWidth: $rem-110 !default;
+
+@mixin create-border($color: $borderColor, $size: $rem-2) {
+  border: $size solid $color;
+}
+
+@mixin create-border-1px($color: $borderColor, $size: 1px) {
+  border: $size solid $color;
+}
+
+@mixin create-border-top($color: $borderColor, $size: $rem-2) {
+  border-top: $size solid $color;
+}
+
+@mixin create-border-right($color: $borderColor, $size: $rem-2) {
+  border-right: $size solid $color;
+}
+
+@mixin create-border-bottom($color: $borderColor, $size: $rem-2) {
+  border-bottom: $size solid $color;
+}
+
+@mixin create-border-left($color: $borderColor, $size: $rem-2) {
+  border-left: $size solid $color;
+}
+
+@mixin create-height-line($height: $defalutHeight) {
+  height: $height;
+  line-height: $height;
+}
+
+@mixin create-height-line-size($height: $defalutHeight) {
+  font-size: $height;
+  height: $height;
+  line-height: $height;
+}
+
+@mixin createBtn($width: 90%, $color: #fff, $background: #09978f, $height: $defalutHeight, $size: $rem-40, $borderRadius: .093rem) {
+  margin: 0 $rem-30;
+  height: $height;
+  line-height: $height;
+  text-align: center;
+  color: $color;
+  background-color: $background;
+  font-size: $size;
+  border-radius: $borderRadius;
+}
+
+@mixin absolute-left-top($left: 0, $top: 0, $zIndex: 2) {
+  position: absolute;
+  left: $left;
+  top: $top;
+  z-index: $zIndex;
+}
+
+@mixin absolute-right-top($right: 0, $top: 0, $zIndex: 2) {
+  position: absolute;
+  right: $right;
+  top: $top;
+  z-index: $zIndex;
+}
+
+@mixin absolute-lift-bottom($left: 0, $bottom: 0, $zIndex: 2) {
+  position: absolute;
+  left: $left;
+  bottom: $bottom;
+  z-index: $zIndex;
+}
+
+@mixin VerticalCenter($heigth: $rem-30, $zIndex: 2) {
+  position: absolute;
+  top: 50%;
+  margin-top: -($heigth / 2);
+  z-index: $zIndex;
+}
+
+@mixin VerticalCenterLeft($heigth: $rem-30, $left: $rem-30) {
+  @include VerticalCenter($heigth);
+  left: $left;
+}
+
+@mixin create-vertical-center-left($heigth: $rem-30, $left: $rem-30) {
+  @include VerticalCenter($heigth);
+  left: $left;
+}
+
+
+@mixin VerticalCenterRight($heigth: $rem-30, $right: $rem-30) {
+  @include VerticalCenter($heigth);
+  right: $right;
+}
+
+@mixin create-icon($width: 0, $height: 0, $url: '', $isBase64: 0, $posx: 0, $posy: 0, $sizew: 100%, $sizeh: 100%) {
+  width: $width;
+  height: $height;
+
+  @if ($url != '') {
+    background-image: image-url($url);
+  }
+
+  @if ($isBase64 == 1) {
+    background-image: inline-image($url);
+  }
+  background-position: $posx $posy;
+  background-repeat: no-repeat;
+  background-size: $sizew $sizeh;
+}
+
+@mixin create-inblock-icon($width: 0, $height: 0, $url: '', $base64: '', $posx: 0, $posy: 0, $sizew: 100%, $sizeh: 100%) {
+  display: inline-block;
+  @include create-icon($width, $height, $url, $base64, $posx, $posy, $sizew, $sizeh);
+}
+
+@mixin create-class-icon($width: 0, $height: 0, $url: '', $base64: '', $posx: 0, $posy: 0, $sizew: 100%, $sizeh: 100%) {
+  @include create-icon($width, $height, $url, $base64, $posx, $posy, $sizew, $sizeh);
+  content: '';
+  visibility: visible;
+}
+
+/*
+
+*/
+
+@mixin create-radius-w-h($size: 50%, $width: $rem-20, $height: $rem-20) {
+  @include border-radius($size);
+  width: $width;
+  height: $height;
+}
+
+/**
+  滚动条
+  */
+
+@mixin create-scrolling() {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+/**
+  创建圆
+  */
+@mixin create-circle($width: $rem-60, $height: $rem-60) {
+  display: inline-block;
+  width: $width;
+  @include create-height-line($height);
+}
+
+@mixin create-circle-color($width: $rem-60, $height: $rem-60, $color: #ffffff) {
+  @include create-circle($width, $height);
+  color: $color;
+}
+
+@mixin create-circle-text($width: $rem-60, $height: $rem-60, $bg: $theme-color-blue, $color: #ffffff) {
+  @include create-circle-color($width, $height, $color);
+  background-color: $bg;
+}
+
+/**
+  fix 花屏
+*/
+
+@mixin trans3d() {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  @include backface-visibility();
+}
